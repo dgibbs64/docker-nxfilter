@@ -6,6 +6,7 @@ LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
       org.label-schema.vcs-url="https://github.com/packetworks/docker-nxfilter"
 
 # Download nxfilter
+RUN echo "$(curl -s -L http://www.nxfilter.org/|grep Download |grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" |grep download|uniq |xargs -n1 curl -s -L |grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" |grep filter-.*zip|grep -v mediafire)"
 RUN curl -s -L http://www.nxfilter.org/|grep Download \
   |grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" \
   |grep download|uniq \
