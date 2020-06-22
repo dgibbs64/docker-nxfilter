@@ -9,7 +9,8 @@ RUN apt-get update && \
     apt-get upgrade && \
     apt-get install -y default-jre
 
-RUN dpkg -i http://pub.nxfilter.org/nxfilter-4.3.7.3.deb
+RUN wget http://pub.nxfilter.org/nxfilter-4.3.7.3.deb && \
+    dpkg -i nxfilter-4.3.7.3.deb
 
 COPY --from=vimagick/sslsplit / /
 
