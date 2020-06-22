@@ -5,11 +5,7 @@ LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
       org.label-schema.vcs-type="Git" \
       org.label-schema.vcs-url="https://github.com/dgibbs64/docker-nxfilter"
       
-RUN apt-get update && \
-    apt-get upgrade && \
-    apt-get install -y wget curl default-jre && \
-    wget $(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep filter-.*deb | grep -v mediafire) && \
-    dpkg -i $(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep filter-.*deb | grep -v mediafire | cut -d'/' -f4-)
+CMD ["/nxfilter-install.sh"]
 
 COPY --from=vimagick/sslsplit / /
 
