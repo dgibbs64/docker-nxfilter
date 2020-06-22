@@ -18,3 +18,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }} # optional
         password: ${{ secrets.DOCKER_PASSWORD }} # optional
         repository: dgibbs/nxfilter
+        tags: latest
