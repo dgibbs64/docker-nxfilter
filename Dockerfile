@@ -9,8 +9,10 @@ RUN apt-get update && \
     apt-get upgrade && \
     apt-get install -y wget default-jre
 
-RUN wget http://pub.nxfilter.org/nxfilter-4.3.7.3.deb && \
-    dpkg -i nxfilter-4.3.7.3.deb
+RUN nxfilterurl=$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep filter-.*deb | grep -v mediafire) \
+    nxfilterdeb=$(echo ${nxfilterurl} | cut -d'/' -f4-) \
+    wget ${nxfilterurl} && \
+    dpkg -i ${nxfilterdeb}
 
 COPY --from=vimagick/sslsplit / /
 
