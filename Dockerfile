@@ -8,7 +8,7 @@ LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
 RUN apt-get update && \
     apt install -y default-jre
 
-RUN apt install http://pub.nxfilter.org/nxfilter-4.3.7.3.deb
+RUN dpkg -i http://pub.nxfilter.org/nxfilter-4.3.7.3.deb
 
 COPY --from=vimagick/sslsplit / /
 
