@@ -1,4 +1,4 @@
-FROM 1science/java:oracle-jre-8
+FROM ubuntu:20.04
 
 MAINTAINER Charles Gunzelman "cgunzelman@gmail.com"
 LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
