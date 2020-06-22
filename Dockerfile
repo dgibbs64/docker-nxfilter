@@ -6,7 +6,8 @@ LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
       org.label-schema.vcs-url="https://github.com/dgibbs64/docker-nxfilter"
       
 RUN apt-get update && \
-    apt install -y default-jre
+    apt-get upgrade && \
+    apt-get install -y default-jre
 
 RUN dpkg -i http://pub.nxfilter.org/nxfilter-4.3.7.3.deb
 
