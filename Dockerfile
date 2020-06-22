@@ -7,7 +7,7 @@ LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
       
 RUN apt-get update && \
     apt-get upgrade && \
-    apt-get install -y default-jre
+    apt-get install -y wget default-jre
 
 RUN wget http://pub.nxfilter.org/nxfilter-4.3.7.3.deb && \
     dpkg -i nxfilter-4.3.7.3.deb
