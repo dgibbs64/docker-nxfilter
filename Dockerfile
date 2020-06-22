@@ -1,22 +1,14 @@
-FROM 1science/java:oracle-jre-8
+FROM ubuntu:20.04
 
-MAINTAINER Charles Gunzelman "cgunzelman@gmail.com"
+MAINTAINER Daniel Gibbs "cgunzelman@gmail.com"
 LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
       org.label-schema.vcs-type="Git" \
-      org.label-schema.vcs-url="https://github.com/packetworks/docker-nxfilter"
+      org.label-schema.vcs-url="https://github.com/dgibbs64/docker-nxfilter"
+      
+RUN apt-get update && \
+    apt install -y default-jre
 
-# Download nxfilter
-RUN curl -s -L http://www.nxfilter.org/|grep Download \
-  |grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" \
-  |grep download|uniq \
-  |xargs -n1 curl -s -L \
-  |grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" \
-  |grep filter-.*zip|grep -v mediafire \
-  |xargs -n1 wget -q && mkdir -p /nxfilter \
-  && unzip -o nxfil* -d /nxfilter \
-  && cp -R /nxfilter/conf /nxfilter/conf-default \
-  && chmod +x /nxfilter/bin/startup.sh \
-  && rm -f *.zip
+RUN apt install http://pub.nxfilter.org/nxfilter-4.3.7.3.deb
 
 COPY --from=vimagick/sslsplit / /
 
