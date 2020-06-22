@@ -4,9 +4,7 @@ name: Docker Build
 
 on:
   push:
-    branches: [ nxfilter-latest ]
   pull_request:
-    branches: [ nxfilter-latest ]
 
 jobs:
   build:
