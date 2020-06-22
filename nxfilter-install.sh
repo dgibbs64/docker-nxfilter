@@ -7,4 +7,3 @@ nxfilterurl=$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -
 nxfilterdeb=$(echo ${nxfilterurl} | cut -d'/' -f4-)
 wget "${nxfilterurl}"
 dpkg -i "${nxfilterdeb}"
-systemctl enable nxfilter
