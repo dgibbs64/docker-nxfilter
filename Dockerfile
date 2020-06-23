@@ -10,6 +10,6 @@ CMD ["/nxfilter-install.sh"]
 COPY --from=vimagick/sslsplit / /
 
 COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["bash","/entrypoint.sh" ]
 
 CMD ["/nxfilter/bin/startup.sh"]
