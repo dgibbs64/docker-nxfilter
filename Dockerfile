@@ -8,14 +8,14 @@ RUN apt-get update && \
 apt-get upgrade && \
 apt-get install -y wget curl default-jre
 
-RUN nxfilterurl="$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "filter-.*deb" | grep -v "mediafire")"
-RUN nxfilterdeb="$(echo ${nxfilterurl} | cut -d'/' -f4-)"
-RUN wget "${nxfilterurl}"
-RUN apt-get -y install ./"${nxfilterdeb}"
+RUN nxfilterurl="$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "filter-.*deb" | grep -v "mediafire")" && \
+ nxfilterdeb="$(echo ${nxfilterurl} | cut -d'/' -f4-)" && \
+ wget "${nxfilterurl}" && \
+ apt-get -y install ./"${nxfilterdeb}"
 
 COPY --from=vimagick/sslsplit / /
 
 COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh" ]
+ENTRYPOINT ["bash","/entrypoint.sh" ]
 
 CMD ["/nxfilter/bin/startup.sh"]
