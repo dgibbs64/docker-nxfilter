@@ -8,8 +8,8 @@ RUN apt-get update && \
 apt-get upgrade && \
 apt-get install -y wget curl default-jre
 
-RUN nxfilterurl=$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "filter-.*deb" | grep -v "mediafire")
-RUN nxfilterdeb=$(echo ${nxfilterurl} | cut -d'/' -f4-)
+RUN nxfilterurl="$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "filter-.*deb" | grep -v "mediafire")"
+RUN nxfilterdeb="$(echo ${nxfilterurl} | cut -d'/' -f4-)"
 RUN wget "${nxfilterurl}"
 RUN apt-get -y install ./"${nxfilterdeb}"
 
