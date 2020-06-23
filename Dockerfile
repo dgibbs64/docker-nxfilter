@@ -16,6 +16,6 @@ apt-get -y install ./"${nxfilterdeb}"
 COPY --from=vimagick/sslsplit / /
 
 COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["bash","/entrypoint.sh" ]
+ENTRYPOINT ["/entrypoint.sh" ]
 
 CMD ["/nxfilter/bin/startup.sh"]
