@@ -5,7 +5,7 @@ LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
       org.label-schema.vcs-type="Git" \
       org.label-schema.vcs-url="https://github.com/dgibbs64/docker-nxfilter"
 RUN apt-get update && \
-apt-get upgrade && \
+apt-get upgrade -y && \
 apt-get install -y wget curl default-jre
 
 RUN nxfilterurl="$(curl -s -L https://nxfilter.org/p3/download | grep ".deb" | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "filter-.*deb" | grep -v "mediafire")" && \
